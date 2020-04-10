@@ -1,5 +1,5 @@
 # viper-docker-community
-Viper with community modules
+Base image for https://github.com/viper-framework/viper with community modules
 
 ```
 root@ecb6f375c398:/# viper
