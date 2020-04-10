@@ -1,4 +1,4 @@
-FROM viper-docker-base
+FROM theshellland/viper-docker-base
 
 # basic requirements
 RUN apt install -y libssl-dev swig libffi-dev ssdeep libfuzzy-dev p7zip-full
