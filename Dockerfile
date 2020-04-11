@@ -53,4 +53,4 @@ USER viper
 # get community modules
 RUN echo update-modules | viper
 
-CMD ["viper"]
+ENTRYPOINT ["viper"]
