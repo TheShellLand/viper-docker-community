@@ -2,4 +2,6 @@
 
 # build viper docker
 
-docker build -t viper-docker-community -f Dockerfile .
+set -xe
+
+docker build -t theshellland/viper-docker-community -f Dockerfile .
