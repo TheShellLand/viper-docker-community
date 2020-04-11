@@ -1,5 +1,5 @@
 # viper-docker-community
-Base image for https://github.com/viper-framework/viper with community modules
+Base image for https://github.com/TheShellLand/viper-docker
 
 #### Contains
 * ssdeep
