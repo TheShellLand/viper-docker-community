@@ -1,8 +1,23 @@
 # viper-docker-community
 Base image for https://github.com/viper-framework/viper with community modules
 
+#### Contains
+* ssdeep
+* swig
+* p7zip
+* unrar-free
+* bitstring
+* libusb v1.0.0-dev
+* exiftool
+* clamav
+* tor
+* perl
+
+#### Community modules
+* 41 modules
+
 ```
-root@ecb6f375c398:/# viper
+root@663d555c84f5:/# viper
          _
         (_)
    _   _ _ ____  _____  ____
