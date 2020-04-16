@@ -43,7 +43,8 @@ RUN apt autoremove -y \
 
 # Create Viper User
 RUN groupadd -r viper \
-    && useradd -r -g viper -d /home/viper -s /sbin/nologin -c "Viper User" viper \
+#    && useradd -r -g viper -d /home/viper -s /sbin/nologin -c "Viper User" viper \
+    && useradd -r -g viper -d /home/viper -s /bin/bash -c "Viper User" viper \
     && mkdir /home/viper \
     && chown -R viper:viper /home/viper
 
@@ -51,6 +52,6 @@ WORKDIR /home/viper
 USER viper
 
 # get community modules
-RUN echo update-modules | viper
+#RUN echo update-modules | viper
 
 ENTRYPOINT ["viper"]
