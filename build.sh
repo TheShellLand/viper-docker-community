@@ -4,4 +4,4 @@
 
 set -xe
 
-docker build -t theshellland/viper-docker-community -f Dockerfile .
+docker build -t theshellland/viper-docker-community:v1.3-dev -f Dockerfile .

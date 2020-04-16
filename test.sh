@@ -4,4 +4,4 @@
 
 set -xe
 
-docker run --rm -it theshellland/viper-docker-community $@
+docker run --rm -it theshellland/viper-docker-community:v1.3-dev $@
