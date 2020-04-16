@@ -1,4 +1,4 @@
-FROM theshellland/viper-docker-base
+FROM theshellland/viper-docker-base:v1.3-dev
 
 USER root
 WORKDIR /
