@@ -3,7 +3,7 @@ Base image for https://github.com/TheShellLand/viper-docker
 
 #### Docker
 
-Docker image: theshellland/viper-docker-community 
+Docker image: theshellland/viper-docker-community
 
 Docker hub: https://hub.docker.com/r/theshellland/viper-docker-community
 
@@ -21,10 +21,10 @@ Docker hub: https://hub.docker.com/r/theshellland/viper-docker-community
 * perl
 
 #### Community modules
-* 41 modules
+* currently none
 
+###### v2.0-rc9, dev:
 ```
-root@663d555c84f5:/# viper
          _
         (_)
    _   _ _ ____  _____  ____
@@ -34,7 +34,27 @@ root@663d555c84f5:/# viper
           |_|
     
 You have 0 files in your default repository.
-You have 41 modules installed.
+
+You do not have any modules installed!
+If you wish to download community modules from GitHub run:
+    update-modules
+viper >
+
+```
+
+###### v1.3-dev, stable, latest:
+```
+         _
+        (_)
+   _   _ _ ____  _____  ____
+  | | | | |  _ \| ___ |/ ___)
+   \ V /| | |_| | ____| |
+    \_/ |_|  __/|_____)_| v1.3-dev
+          |_|
+
+You have 0 files in your default repository
 viper > 
 ```
+
 Built from: https://github.com/TheShellLand/viper-docker-base
+
