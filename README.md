@@ -8,7 +8,7 @@ Docker image: theshellland/viper-docker-community
 Docker hub: https://hub.docker.com/r/theshellland/viper-docker-community
 
 
-#### Contains
+#### Packages
 * ssdeep
 * swig
 * p7zip
