@@ -35,6 +35,31 @@ RUN apt install -y libdpkg-perl
 # fix ERROR: pymispgalaxies 0.2 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
 RUN pip3 install jsonschema==3.2.0
 
+# Yara
+RUN pip3 install yara-python
+
+# ssdeep
+WORKDIR /install
+#RUN pip3 install ssdeep
+RUN git clone https://github.com/ssdeep-project/ssdeep \
+    && cd ssdeep \
+    && autoreconf -i \
+    && ./configure \
+    && make \
+    && make install
+# I guess this is needed for ssdeep
+RUN pip3 install pydeep
+
+# PyExif
+WORKDIR /install
+RUN git clone git://github.com/smarnach/pyexiftool.git \
+    && cd pyexiftool \
+    && python setup.py install
+
+# AndroGuard
+RUN pip3 install -U androguard
+
+
 # cleanup
 RUN apt autoremove -y \
     && apt autoclean \
