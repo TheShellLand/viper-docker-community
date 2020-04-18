@@ -46,9 +46,29 @@ RUN git clone https://github.com/ssdeep-project/ssdeep \
     && autoreconf -i \
     && ./configure \
     && make \
-    && make install
-# I guess this is needed for ssdeep
-RUN pip3 install pydeep
+    && make install \
+
+# yara
+WORKDIR /install
+RUN apt install -y automake libtool make gcc \
+    # for generating lexers and parsers
+    && apt install -y flex bison \
+    && git clone https://github.com/VirusTotal/yara.git \
+    && cd yara \
+    && ./bootstrap.sh \
+    && sync \
+    && ./configure --with-crypto --enable-magic --enable-cuckoo --enable-dotnet \
+    && make \
+    && make install \
+    && make check
+
+#### Python
+
+# ssdeep
+RUN pip3 install ssdeep
+
+# Yara pip
+RUN pip3 install yara-python
 
 # PyExif
 WORKDIR /install
