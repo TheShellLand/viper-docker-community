@@ -55,6 +55,8 @@ WORKDIR /install
 RUN apt install -y automake libtool make gcc \
     # for generating lexers and parsers
     && apt install -y flex bison \
+    # dependencies
+    && apt install -y libjansson-dev libmagic-dev \
     && git clone https://github.com/VirusTotal/yara.git \
     && cd yara \
     && ./bootstrap.sh \
