@@ -89,32 +89,25 @@ RUN apt update \
 
 #### Python
 
-# ssdeep
-RUN pip3 install ssdeep
-
-# Yara pip
-RUN pip3 install yara-python
+RUN pip3 install update pip \
+    # ssdeep
+    && pip3 install ssdeep \
+    # Yara pip
+    && pip3 install yara-python \
+    # AndroGuard
+    && pip3 install -U androguard \
+    # pydeep
+    # needed for ssdeep?
+    && pip3 install pydeep
 
 # PyExif
-WORKDIR /install
+WORKDIR $TMPINSTALL
 RUN git clone https://github.com/smarnach/pyexiftool \
     && cd pyexiftool \
-    && python setup.py install
+    && python setup.py install \
+    # cleanup
+    && rm -rf $TMPINSTALL
 
-# AndroGuard
-RUN pip3 install -U androguard
-
-# pydeep
-# needed for ssdeep?
-RUN pip3 install pydeep
-
-
-# cleanup
-RUN apt autoremove -y \
-    && apt autoclean \
-    && apt clean \
-    && rm -rf /tmp/* \
-    && rm -rf /install
 
 # Create Viper User
 RUN groupadd -r viper \
