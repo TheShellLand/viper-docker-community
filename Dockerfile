@@ -19,6 +19,12 @@ RUN pip3 install bitstring
 # fix OSError: libusb-1.0.so: cannot open shared object file: No such file or directory
 RUN apt install -y libusb-1.0-0-dev
 
+# fix ERROR: pymisp 2.4.124 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
+# fix ERROR: pymispgalaxies 0.2 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
+RUN pip3 install jsonschema==3.2.0
+
+#### Packages
+
 # Exif
 RUN apt install -y exiftool
 
@@ -35,12 +41,8 @@ RUN apt install -y libdpkg-perl
 # fix ERROR: pymispgalaxies 0.2 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
 RUN pip3 install jsonschema==3.2.0
 
-# Yara
-RUN pip3 install yara-python
-
 # ssdeep
 WORKDIR /install
-#RUN pip3 install ssdeep
 RUN git clone https://github.com/ssdeep-project/ssdeep \
     && cd ssdeep \
     && autoreconf -i \
@@ -72,19 +74,24 @@ RUN pip3 install yara-python
 
 # PyExif
 WORKDIR /install
-RUN git clone git://github.com/smarnach/pyexiftool.git \
+RUN git clone https://github.com/smarnach/pyexiftool \
     && cd pyexiftool \
     && python setup.py install
 
 # AndroGuard
 RUN pip3 install -U androguard
 
+# pydeep
+# needed for ssdeep?
+RUN pip3 install pydeep
+
 
 # cleanup
 RUN apt autoremove -y \
     && apt autoclean \
     && apt clean \
-    && rm -rf /tmp/*
+    && rm -rf /tmp/* \
+    && rm -rf /install
 
 # Create Viper User
 RUN groupadd -r viper \
