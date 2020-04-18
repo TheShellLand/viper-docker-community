@@ -1,5 +1,8 @@
 FROM theshellland/viper-docker-base:v1.3-dev
 
+# fun note, $INSTALL is used by programs, DONT SET INSTALL VAR
+ENV TMPINSTALL /install
+
 USER root
 WORKDIR /
 
