@@ -5,23 +5,24 @@ WORKDIR /
 
 # basic requirements
 RUN apt update \
-    && apt install -y libssl-dev swig libffi-dev ssdeep libfuzzy-dev p7zip-full
+    && apt install -y libssl-dev swig libffi-dev ssdeep libfuzzy-dev p7zip-full \
+    # for compiling code
+    && apt install -y build-essential \
+    # fix unrar not found
+    && apt install -y unrar-free \
+    # fix bitstring module not found
+    && pip3 install bitstring \
+    # fix OSError: libusb-1.0.so: cannot open shared object file: No such file or directory
+    && apt install -y libusb-1.0-0-dev \
+    # fix ERROR: pymisp 2.4.124 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
+    # fix ERROR: pymispgalaxies 0.2 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
+    && pip3 install jsonschema==3.2.0 \
+    # cleanup
+    && apt autoremove -y \
+    && apt autoclean -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
-# for compiling code
-RUN apt install -y build-essential
-
-# fix unrar not found
-RUN apt install -y unrar-free
-
-# fix bitstring module not found
-RUN pip3 install bitstring
-
-# fix OSError: libusb-1.0.so: cannot open shared object file: No such file or directory
-RUN apt install -y libusb-1.0-0-dev
-
-# fix ERROR: pymisp 2.4.124 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
-# fix ERROR: pymispgalaxies 0.2 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
-RUN pip3 install jsonschema==3.2.0
 
 #### Packages
 
