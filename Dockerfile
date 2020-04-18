@@ -42,13 +42,21 @@ RUN apt install -y libdpkg-perl
 RUN pip3 install jsonschema==3.2.0
 
 # ssdeep
-WORKDIR /install
-RUN git clone https://github.com/ssdeep-project/ssdeep \
+WORKDIR $TMPINSTALL
+RUN apt update \
+    && apt install -y build-essential git gcc make libfuzzy-dev libtool libffi-dev automake autoconf libtool \
+    && git clone https://github.com/ssdeep-project/ssdeep \
     && cd ssdeep \
     && autoreconf -i \
     && ./configure \
     && make \
     && make install \
+    # cleanup
+    && rm -rf $TMPINSTALL \
+    && apt autoremove -y \
+    && apt autoclean -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 # yara
 WORKDIR /install
