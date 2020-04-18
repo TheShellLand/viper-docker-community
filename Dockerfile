@@ -65,8 +65,9 @@ RUN apt update \
     && rm -rf /var/lib/apt/lists/*
 
 # yara
-WORKDIR /install
-RUN apt install -y automake libtool make gcc \
+WORKDIR $TMPINSTALL
+RUN apt update \
+    && apt install -y automake libtool make gcc \
     # for generating lexers and parsers
     && apt install -y flex bison \
     # dependencies
@@ -78,7 +79,13 @@ RUN apt install -y automake libtool make gcc \
     && ./configure --with-crypto --enable-magic --enable-cuckoo --enable-dotnet \
     && make \
     && make install \
-    && make check
+    && make check \
+    # cleanup
+    && rm -rf $TMPINSTALL \
+    && apt autoremove -y \
+    && apt autoclean -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 #### Python
 
