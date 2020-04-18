@@ -19,6 +19,10 @@ Docker hub: https://hub.docker.com/r/theshellland/viper-docker-community
 * clamav
 * tor
 * perl
+* yara
+* ssdeep (https://github.com/ssdeep-project/ssdeep)
+* PyExif
+* AndroGuard
 
 #### Community modules
 * currently none
