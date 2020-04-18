@@ -29,21 +29,23 @@ RUN apt update \
 
 #### Packages
 
-# Exif
-RUN apt install -y exiftool
-
-# ClamAV
-RUN apt install -y clamav-daemon
-
-# Tor
-RUN apt install -y tor
-
-# Scraper
-RUN apt install -y libdpkg-perl
-
-# fix ERROR: pymisp 2.4.124 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
-# fix ERROR: pymispgalaxies 0.2 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
-RUN pip3 install jsonschema==3.2.0
+RUN apt update \
+    # Exif
+    && apt install -y exiftool \
+    # ClamAV
+    && apt install -y clamav-daemon \
+    # Tor
+    && apt install -y tor \
+    # Scraper
+    && apt install -y libdpkg-perl \
+    # fix ERROR: pymisp 2.4.124 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
+    # fix ERROR: pymispgalaxies 0.2 has requirement jsonschema<4.0.0,>=3.2.0, but you'll have jsonschema 3.0.1 which is incompatible.
+    && pip3 install jsonschema==3.2.0 \
+    # cleanup
+    && apt autoremove -y \
+    && apt autoclean -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 # ssdeep
 WORKDIR $TMPINSTALL
